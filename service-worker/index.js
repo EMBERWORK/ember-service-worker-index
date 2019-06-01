@@ -56,7 +56,7 @@ self.addEventListener('fetch', (event) => {
                 return fetchedResponse.clone();
             });
         });
-      }
-    );
+      })
+    )
   }
 });
