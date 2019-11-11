@@ -47,6 +47,10 @@ self.addEventListener('fetch', (event) => {
   let isTests = url.pathname === '/tests' && ENVIRONMENT === 'development';
 
   if (!isTests && isGETRequest && isHTMLRequest && isLocal && scopeIncluded && !scopeExcluded) {
-    event.respondWith(_fetchIndex().catch(() => _returnCachedIndex()))
+    if (self.navigator.onLine) {
+      event.respondWith(_fetchIndex().catch(() => _returnCachedIndex()));
+    } else {
+      event.respondWith(_returnCachedIndex());
+    }
   }
 });
