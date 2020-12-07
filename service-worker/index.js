@@ -11,7 +11,7 @@ const INDEX_HTML_URL = new URL(INDEX_HTML_PATH, self.location).toString();
 const _fetchIndex = function() {
   return fetch(INDEX_HTML_URL, { credentials: 'include' }).then((response) => {
     caches.open(CACHE_NAME).then((cache) => cache.put(INDEX_HTML_URL, response));
-    return response;
+    return response.clone();
   })
 };
 
